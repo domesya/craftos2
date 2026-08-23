@@ -363,7 +363,7 @@ jobs:
         VERSION=$(echo $GITHUB_REF | grep -o '[0-9\.]*')
         git clone ssh://aur@aur.archlinux.org/craftos-pc$LUAJIT-bin.git
         cd craftos-pc$LUAJIT-bin
-        lua $GITHUB_WORKSPACE/craftos2-release-resources/arch/write-bin-pkgbuild.lua $VERSION $(curl -sL https://github.com/MCJack123/craftos2/archive/$GITHUB_REF.tar.gz | shasum -a 256 | awk '{print $1;}') $(curl -sL https://github.com/MCJack123/craftos2/releases/download/$GITHUB_REF/CraftOS-PC.x86_64.AppImage | shasum -a 256 | awk '{print $1;}')
+        lua $GITHUB_WORKSPACE/craftos2-release-resources/arch/write-bin-pkgbuild.lua $VERSION $(curl -sL https://github.com/MCJack123/craftos2/archive/$GITHUB_REF.tar.gz | shasum -a 256 | awk '{print $1;}') $(curl -sL https://github.com/MCJack123/craftos2/releases/download/$GITHUB_REF/*.x86_64.AppImage | shasum -a 256 | awk '{print $1;}')
         cat PKGBUILD .SRCINFO
         git add PKGBUILD .SRCINFO
         git commit -a -m "$GITHUB_REF"
